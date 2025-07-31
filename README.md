@@ -1,1 +1,1 @@
-# bme280_luchtdrukl
+# bme280_luchtdruk
