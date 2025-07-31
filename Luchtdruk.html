@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Luchtdruk Antwerpen</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f8f8f8;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: inline-block;
+    }
+    .pressure {
+      font-size: 2em;
+      font-weight: bold;
+      color: #0077aa;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Actuele luchtdruk</h2>
+    <div id="pressure" class="pressure">Laden...</div>
+    <p>Antwerpen, België</p>
+  </div>
+
+  <script>
+    const apiKey = "7111858d4ab817ce2912fce1005fb36d"; // Vervang door jouw API-sleutel
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=Antwerp,BE&appid=${apiKey}&units=metric`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const pressure = data.main.pressure; // hPa
+        document.getElementById("pressure").textContent = pressure + " hPa";
+      })
+      .catch(error => {
+        document.getElementById("pressure").textContent = "Fout bij laden";
+        console.error(error);
+      });
+  </script>
+</body>
+</html>
